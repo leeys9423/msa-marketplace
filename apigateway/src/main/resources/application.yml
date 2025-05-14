@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true  # 서비스 디스커버리 활성화 (Eureka에서 서비스 찾기)
+          lower-case-service-id: true  # 서비스 ID를 소문자로 변환
+      routes:  # 라우팅 규칙 정의
+        - id: user-service  # 라우트 식별자
+          uri: lb://USER-SERVICE  # 대상 서비스 (lb:// 접두사는 로드밸런싱을 의미)
+          predicates:  # 매칭될 경로 패턴들
+            - Path=/api/users/**, /api/members/**, /api/enterprises/**
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/products/**, /api/categories/**
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/api/orders/**
+        - id: payment-service
+          uri: lb://PAYMENT-SERVICE
+          predicates:
+            - Path=/api/payments/**, /api/refunds/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/  # Eureka 서버 위치
+    fetch-registry: true  # Eureka에서 서비스 정보를 가져옴
+    register-with-eureka: true  # 이 서비스를 Eureka에 등록
