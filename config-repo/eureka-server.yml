@@ -1,0 +1,21 @@
+# Eureka 서버(서비스 디스커버리) 설정 파일
+
+# 서버 포트 설정
+server:
+  port: 8761  # Eureka 서버는 기본적으로 8761 포트를 사용합니다
+
+# 서비스 이름 설정
+spring:
+  application:
+    name: eureka-server  # Config Server에서 이 이름으로 설정을 가져옵니다
+
+# Eureka 서버 설정
+eureka:
+  client:
+    registerWithEureka: false  # 자기 자신을 Eureka 서버에 등록하지 않습니다
+    fetchRegistry: false       # 레지스트리 정보를 로컬에 캐싱하지 않습니다
+    service-url:
+      defaultZone: http://localhost:8761/eureka/  # 자기 자신의 주소
+  server:
+    wait-time-in-ms-when-sync-empty: 0     # 초기화 시 레지스트리가 비어있을 때 대기 시간
+    enable-self-preservation: false        # 자유보존 모드 비활성화 (동작하지 않는 서비스를 즉시 제거)

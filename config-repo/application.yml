@@ -1,0 +1,14 @@
+# 모든 마이크로서비스에 적용되는 공통 설정 파일입니다.
+
+# Actuator 엔드포인트 노출 설정
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'  # 모든 액추에이터 엔드포인트를 외부에 노출합니다
+
+# 모든 서비스의 기본 Eureka 설정
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/  # 기본 Eureka 서버 위치

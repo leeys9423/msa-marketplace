@@ -1,0 +1,16 @@
+# Config Server 설정 파일
+
+# 서버 포트 설정
+server:
+  port: 8888  # Config Server는 기본적으로 8888 포트를 사용합니다
+
+spring:
+  application:
+    name: config-server  # 애플리케이션 이름
+  profiles:
+    active: native  # 로컬 파일시스템 모드 활성화
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: file:///Users/yslee/Desktop/project/marketplace/config-repo  # 설정 파일 위치
