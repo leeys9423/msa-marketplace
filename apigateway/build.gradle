@@ -22,11 +22,27 @@ ext {
 }
 
 dependencies {
+    // Actuator
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    // api gateway
     implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
+
+    // eureka client
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+    // cloud config
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
+
+    // bootstrap.yml 파일 활성화
     implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
+
+    // webflux
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    // 서킷브레이커, 재시도, 속도제한 등 장애 내성 패턴 구현
+    implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
